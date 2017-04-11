@@ -8,5 +8,9 @@ module.exports = {
       ? config.build.productionSourceMap
       : config.dev.cssSourceMap,
     extract: isProduction
-  })
+  }),
+  cssModules: {
+    localIdentName: '[name]-[local]-[hash:base64:5]',
+    camelCase: true
+  }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="$style.app">
     <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
@@ -11,8 +11,8 @@ export default {
 }
 </script>
 
-<style>
-#app {
+<style module>
+.app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
