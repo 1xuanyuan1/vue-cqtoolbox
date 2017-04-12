@@ -20,6 +20,7 @@ export default {
 <style lang="scss" module>
 @import "~scss/base.scss";
 .main {
+  padding-top: 52px;
   min-height: $min-height;
   background: $bg-color;
   transform: translate3d(0, 0, 0);

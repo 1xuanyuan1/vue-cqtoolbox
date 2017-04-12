@@ -25,7 +25,8 @@ module.exports = {
       '@': resolve('src'),
       'scss': resolve('src/scss'),
       'views': resolve('src/views'),
-      'assets': resolve('src/assets')
+      'assets': resolve('src/assets'),
+      'lib': resolve('lib')
     }
   },
   module: {
@@ -45,9 +46,13 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('lib')]
+      },
+      {
+        test: /\.theme$/,
+        use: ['raw-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

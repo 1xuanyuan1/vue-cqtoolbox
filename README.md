@@ -31,3 +31,4 @@ JSX 的最大的好处在于，对虚拟DOM的集成。在渲染的时候，在�
 
 - [bulma](http://bulma.io/)
 - [antd](https://ant.design)
+- [vue-material](http://vue-material.com/)
