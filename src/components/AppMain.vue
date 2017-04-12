@@ -26,10 +26,10 @@ export default {
   transform: translate3d(0, 0, 0);
 }
 .font-red {
-  color: red;
+  // color: red;
 }
 .backgroud-red {
-  background: red;
+  // background: red;
 }
 .content {
   padding: 0;
