@@ -1,10 +1,10 @@
 <template>
-  <button class="cq-button" :class="[themeClass]" :type="type" :disabled="disabled" v-if="!href">
+  <button :class="[className, themeClass]" :type="type" :disabled="disabled" v-if="!href">
     <cq-ink-ripple :cq-disabled="disabled"></cq-ink-ripple>
     <slot></slot>
   </button>
 
-  <a class="cq-button" :class="[themeClass]" :href="href" :disabled="disabled" :target="target" :rel="newRel" v-else>
+  <a :class="[className, themeClass]" :href="href" :disabled="disabled" :target="target" :rel="newRel" v-else>
     <cq-ink-ripple :cq-disabled="disabled"></cq-ink-ripple>
     <slot></slot>
   </a>
@@ -14,7 +14,7 @@
 
 <script>
   import theme from '../../core/components/theme/mixin'
-
+  import { BUTTON } from '../../identifiers'
   export default {
     props: {
       href: String,
@@ -28,11 +28,13 @@
     },
     mixins: [theme],
     computed: {
-      newRel() {
+      className () {
+        return [BUTTON]
+      },
+      newRel () {
         if (this.target === '_blank') {
           return this.rel || 'noopener'
         }
-
         return this.rel
       }
     }

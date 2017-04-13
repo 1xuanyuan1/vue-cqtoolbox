@@ -1,9 +1,9 @@
 <template>
-  <i class="cq-icon" :class="[themeClass]" v-html="svgContent" v-if="svgContent"></i>
+  <i :class="[className, themeClass]" v-html="svgContent" v-if="svgContent"></i>
 
   <!-- <cq-image class="cq-icon" :class="[themeClass]" :cq-src="imageSrc" v-else-if="imageSrc"></cq-image> -->
 
-  <i class="cq-icon" :class="[themeClass, cqIconset]" :aria-hidden="!!cqIconset" v-else>
+  <i :class="[className, themeClass, cqIconset]" :aria-hidden="!!cqIconset" v-else>
     <slot></slot>
   </i>
 </template>
@@ -12,7 +12,7 @@
 
 <script>
   import theme from '../../core/components/theme/mixin'
-
+  import { ICON } from '../../identifiers'
   let registeredIcons = {}
 
   export default {
@@ -23,40 +23,45 @@
         default: 'material-icons'
       }
     },
+    computed: {
+      className () {
+        return [ICON]
+      }
+    },
     data: () => ({
       svgContent: null,
       imageSrc: null
     }),
     mixins: [theme],
     watch: {
-      cqSrc() {
+      cqSrc () {
         this.svgContent = null
         this.imageSrc = null
         this.checkSrc()
       }
     },
     methods: {
-      isImage(mimetype) {
+      isImage (mimetype) {
         return mimetype.indexOf('image') >= 0
       },
-      isSVG(mimetype) {
+      isSVG (mimetype) {
         return mimetype.indexOf('svg') >= 0
       },
-      setSVGContent(value) {
+      setSVGContent (value) {
         this.svgContent = value
 
         this.$nextTick(() => {
           this.$el.children[0].removeAttribute('fill')
         })
       },
-      loadSVG() {
+      loadSVG () {
         if (!registeredIcons[this.cqSrc]) {
           const request = new XMLHttpRequest()
           const self = this
 
           request.open('GET', this.cqSrc, true)
 
-          request.onload = function() {
+          request.onload = function () {
             const mimetype = this.getResponseHeader('content-type')
 
             if (this.status >= 200 && this.status < 400 && self.isImage(mimetype)) {
@@ -76,10 +81,10 @@
           this.setSVGContent(registeredIcons[this.cqSrc])
         }
       },
-      loadImage() {
+      loadImage () {
         this.imageSrc = this.cqSrc
       },
-      checkSrc() {
+      checkSrc () {
         if (this.cqSrc) {
           if (this.cqSrc.indexOf('.svg') >= 0) {
             this.loadSVG()
@@ -89,7 +94,7 @@
         }
       }
     },
-    mounted() {
+    mounted () {
       this.checkSrc()
     }
   }

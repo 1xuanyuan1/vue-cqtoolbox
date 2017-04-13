@@ -201,7 +201,7 @@
         })
       }, 100)
     },
-    beforeDestroy() {
+    beforeDestroy () {
       this.destroy()
     }
   }

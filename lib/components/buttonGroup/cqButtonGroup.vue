@@ -1,5 +1,5 @@
 <template>
-  <div class="cq-button-group" :class="[themeClass]" >
+  <div :class="[className, themeClass]" >
     <slot></slot>
   </div>
 </template>
@@ -8,7 +8,7 @@
 
 <script>
   import theme from '../../core/components/theme/mixin'
-  import { BUTTON, TOGGLE } from '../../identifiers'
+  import { BUTTON, TOGGLE, BUTTON_GROUP } from '../../identifiers'
 
   let onClickButton
 
@@ -17,7 +17,12 @@
       single: Boolean
     },
     mixins: [theme],
-    mounted() {
+    computed: {
+      className () {
+        return [BUTTON_GROUP]
+      }
+    },
+    mounted () {
       this.$children.forEach((child) => {
         let element = child.$el
         let toggleClass = TOGGLE
@@ -39,7 +44,7 @@
         }
       })
     },
-    beforeDestroy() {
+    beforeDestroy () {
       this.$children.forEach((child) => {
         let element = child.$el
 

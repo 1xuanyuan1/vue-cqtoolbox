@@ -12,7 +12,7 @@
 <script>
 export default {
   mounted () {
-    console.log(this.$style)
+    // console.log(this.$style)
   }
 }
 </script>
@@ -20,7 +20,7 @@ export default {
 <style lang="scss" module>
 @import "~scss/base.scss";
 .main {
-  padding-top: 52px;
+  padding: 52px 0;
   min-height: $min-height;
   background: $bg-color;
   transform: translate3d(0, 0, 0);
